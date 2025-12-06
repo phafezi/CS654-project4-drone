@@ -193,13 +193,13 @@ class NavigationAviary(BaseRLAviary):
         ## reward is based off the inverse distances
         state = self._getDroneStateVector(0)
         dist = np.linalg.norm(self.TARGET_POS-state[0:3])
-        ret = 1 / ( 1+ dist**2 )
+        ret = 10 / ( 1+ dist**2 )
 
         if (self.collision_with_target):
-            ret += 10
+            ret += 100
 
         if (self.collision_with_obstacle):
-            ret -+ 10
+            ret -= 100
 
         return ret
 
